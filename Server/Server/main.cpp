@@ -1,99 +1,91 @@
+
+//
+// Disclaimer:
+// ----------
+//
+// This code will work only if you selected window, graphics and audio.
+//
+// Note that the "Run Script" build phase will copy the required frameworks
+// or dylibs to your application bundle so you can execute it on any OS X
+// computer.
+//
+// Your resource files (images, sounds, fonts, ...) are also copied to your
+// application bundle. To get the path to these resources, use the helper
+// function `resourcePath()` from ResourcePath.hpp
+//
+
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <time.h>
-using namespace sf;
 
-const int W=600;
-const int H=480;
-int speed = 4;
-bool field[W][H]={0};
+// Here is a small helper for you! Have a look.
+#include "ResourcePath.hpp"
 
-struct player
-{ int x,y,dir;
-    Color color;
-    player(Color c)
-    {
-        x=rand() % W;
-        y=rand() % H;
-        color=c;
-        dir=rand() % 4;
-    }
-    void tick()
-    {
-        if (dir==0) y+=1;
-        if (dir==1) x-=1;
-        if (dir==2) x+=1;
-        if (dir==3) y-=1;
-
-        if (x>=W) x=0;  if (x<0) x=W-1;
-        if (y>=H) y=0;  if (y<0) y=H-1;
-    }
-
-    Vector3f getColor()
-    {return Vector3f(color.r,color.g,color.b);}
-};
-
-int main()
+int main(int, char const**)
 {
-    srand(time(0));
+    // Create the main window
+    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
-    RenderWindow window(VideoMode(W, H), "The Tron Game!");
-    window.setFramerateLimit(60);
+    // Set the Icon
+    sf::Image icon;
+    if (!icon.loadFromFile(resourcePath() + "icon.png")) {
+        return EXIT_FAILURE;
+    }
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-    Texture texture;
-    texture.loadFromFile("background.jpg");
-    Sprite sBackground(texture);
+    // Load a sprite to display
+    sf::Texture texture;
+    if (!texture.loadFromFile(resourcePath() + "cute_image.jpg")) {
+        return EXIT_FAILURE;
+    }
+    sf::Sprite sprite(texture);
 
-    player p1(Color::Red), p2(Color::Green);
+    // Create a graphical text to display
+    sf::Font font;
+    if (!font.loadFromFile(resourcePath() + "sansation.ttf")) {
+        return EXIT_FAILURE;
+    }
+    sf::Text text("Hello SFML", font, 50);
+    text.setFillColor(sf::Color::Black);
 
-    Sprite sprite;
-    RenderTexture t;
-    t.create(W, H);
-    t.setSmooth(true);
-    sprite.setTexture(t.getTexture());
-    t.clear();  t.draw(sBackground);
+    // Load a music to play
+    sf::Music music;
+    if (!music.openFromFile(resourcePath() + "nice_music.ogg")) {
+        return EXIT_FAILURE;
+    }
 
-    bool Game=1;
+    // Play the music
+    music.play();
 
+    // Start the game loop
     while (window.isOpen())
     {
-        Event e;
-        while (window.pollEvent(e))
+        // Process events
+        sf::Event event;
+        while (window.pollEvent(event))
         {
-            if (e.type == Event::Closed)
+            // Close window: exit
+            if (event.type == sf::Event::Closed) {
                 window.close();
+            }
+
+            // Escape pressed: exit
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+                window.close();
+            }
         }
 
-        if (Keyboard::isKeyPressed(Keyboard::Left)) if (p1.dir!=2) p1.dir=1;
-        if (Keyboard::isKeyPressed(Keyboard::Right)) if (p1.dir!=1)  p1.dir=2;
-        if (Keyboard::isKeyPressed(Keyboard::Up)) if (p1.dir!=0) p1.dir=3;
-        if (Keyboard::isKeyPressed(Keyboard::Down)) if (p1.dir!=3) p1.dir=0;
-
-        if (Keyboard::isKeyPressed(Keyboard::A)) if (p2.dir!=2) p2.dir=1;
-        if (Keyboard::isKeyPressed(Keyboard::D)) if (p2.dir!=1)  p2.dir=2;
-        if (Keyboard::isKeyPressed(Keyboard::W)) if (p2.dir!=0) p2.dir=3;
-        if (Keyboard::isKeyPressed(Keyboard::S)) if (p2.dir!=3) p2.dir=0;
-
-        if (!Game)    continue;
-
-        for(int i=0;i<speed;i++)
-        {
-            p1.tick(); p2.tick();
-            if (field[p1.x][p1.y]==1) Game=0;
-            if (field[p2.x][p2.y]==1) Game=0;
-            field[p1.x][p1.y]=1;
-            field[p2.x][p2.y]=1;
-
-            CircleShape c(3);
-            c.setPosition(p1.x,p1.y); c.setFillColor(p1.color);    t.draw(c);
-            c.setPosition(p2.x,p2.y); c.setFillColor(p2.color);    t.draw(c);
-            t.display();
-        }
-
-        ////// draw  ///////
+        // Clear screen
         window.clear();
+
+        // Draw the sprite
         window.draw(sprite);
+
+        // Draw the string
+        window.draw(text);
+
+        // Update the window
         window.display();
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
