@@ -7,24 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		069A20D926300E7200703BBF /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 069A20D826300E7200703BBF /* ResourcePath.mm */; };
 		069A20DC26300E7200703BBF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 069A20DB26300E7200703BBF /* main.cpp */; };
-		069A20DF26300E7200703BBF /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 069A20DE26300E7200703BBF /* cute_image.jpg */; };
-		069A20E126300E7200703BBF /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 069A20E026300E7200703BBF /* nice_music.ogg */; };
-		069A20E326300E7200703BBF /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 069A20E226300E7200703BBF /* sansation.ttf */; };
-		069A20E526300E7200703BBF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 069A20E426300E7200703BBF /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		069A20D326300E7200703BBF /* Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		069A20D726300E7200703BBF /* Client-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Client-Info.plist"; sourceTree = "<group>"; };
-		069A20D826300E7200703BBF /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
-		069A20DA26300E7200703BBF /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
 		069A20DB26300E7200703BBF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		069A20DE26300E7200703BBF /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
-		069A20E026300E7200703BBF /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
-		069A20E226300E7200703BBF /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
-		069A20E426300E7200703BBF /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +46,6 @@
 		069A20D526300E7200703BBF /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				069A20D826300E7200703BBF /* ResourcePath.mm */,
-				069A20DA26300E7200703BBF /* ResourcePath.hpp */,
 				069A20DB26300E7200703BBF /* main.cpp */,
 				069A20DD26300E7200703BBF /* Resources */,
 				069A20D626300E7200703BBF /* Supporting Files */,
@@ -77,10 +64,6 @@
 		069A20DD26300E7200703BBF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				069A20DE26300E7200703BBF /* cute_image.jpg */,
-				069A20E026300E7200703BBF /* nice_music.ogg */,
-				069A20E226300E7200703BBF /* sansation.ttf */,
-				069A20E426300E7200703BBF /* icon.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -142,10 +125,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				069A20E526300E7200703BBF /* icon.png in Resources */,
-				069A20E326300E7200703BBF /* sansation.ttf in Resources */,
-				069A20E126300E7200703BBF /* nice_music.ogg in Resources */,
-				069A20DF26300E7200703BBF /* cute_image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +156,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				069A20DC26300E7200703BBF /* main.cpp in Sources */,
-				069A20D926300E7200703BBF /* ResourcePath.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
